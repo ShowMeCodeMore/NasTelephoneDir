@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    　
+    <!--<meta http-equiv="Cache-Control" content="no-transform "/>-->
+    <!--<meta http-equiv="Cache-Control" content="no-siteapp"/>-->
+    <link rel="shortcut icon" href="img/favicon.png">
+    <title>区块链电话通讯录</title>
+    <meta name="keywords" content="区块链NAS电话通讯录">
+    <meta name="description" content="这款通讯录可不简单哦，基于NAS开发的">
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/site2.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/bxslider/4.1.2/jquery.bxslider.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" href="css/mytel.css">
+
+    <script>
+        paceOptions = {
+            elements: true
+        };
+    </script>
+
+</head>
+<body>
+<div id="wrapper">
+    <div class="header">
+
+        <div class="container">
+            <div class="navbar-header">
+                <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+                    <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
+                    <span class="icon-bar"></span> <span class="icon-bar"></span>
+                </button>
+                <a href="/" class="navbar-brand logo logo-title">
+                    <span class="logo-icon"><i class="icon  shape-0"></i>
+                    </span>
+                    电话通讯录
+                    <span></span>
+                </a>
+                <p id="checkrule" class="navbar-brand logo2 logo-title2">
+                    <span class="logo-icon"><i class="icon  shape-0"></i>
+                    </span>
+                    查看使用规则
+                    <span></span>
+                </p>
+                <p id="hiderule" class="navbar-brand logo2 logo-title2" hidden>
+                    <span class="logo-icon"><i class="icon  shape-0"></i>
+                    </span>
+                    隐藏使用规则
+                    <span></span>
+                </p>
+                <p id="solgan" class="navbar-brand logo3 logo-title3" >
+                    <span class="logo-icon"><i class="icon  shape-0"></i>
+                    </span>
+                    这款通讯录可不简单哦，基于NAS开发的！
+                    <span></span>
+                </p>
+
+            </div>
+            <div class="navbar-collapse collapse">
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="search-row-wrapper"
+         style="background-image: url(./img/bg1001.jpg);
+         background-size: cover;
+         background-position: center center;">
+
+        <div class="container text-center">
+            <!--<form id="w0" method="get" role="form">-->
+                <div class="col-sm-7 wd-input">
+                    <input name="k" id="wd" class="form-control keyword" type="text"  value="" placeholder="钱包地址(account address) ：n1P1jZHrv...">
+                </div>
+                <div  class="col-sm-7 num-input" hidden>
+                    <input name="num" id="num"  type="text" class="input-add"  value="" placeholder="号码 phone number">
+                </div>
+                <div class="col-sm-7 content-input" hidden>
+                    <input name="content" id="content"   type="text" class="input-add"  value="" placeholder="联系人名称 name">
+                </div>
+                <div class="col-sm-7 type-input" hidden>
+                    <input name="type" id="type"  type="text"  class="input-add" value="" placeholder="分组 type">
+                </div>
+                <div class="col-sm-7 author-input" hidden>
+                    <input name="author" id="author"  type="text" class="input-add"  value="" placeholder="当前使用账号地址 current use wallet account address">
+                </div>
+
+
+                <div class="col-sm-2 div-btn-search">
+                    <button class="btn btn-search btn-block btn-primary2   ">查询(Search)</button>
+                </div>
+                <div class="col-sm-2 div-btn-add">
+                    <button class="btn btn-add btn-block btn-primary2   ">新增(Add)</button>
+                </div>
+                <div class="col-sm-2 div-btn-sure" hidden>
+                    <button class="btn btn-sure btn-block btn-primary2   ">确认(Ok)</button>
+                </div>
+                <div class="col-sm-2 div-btn-cancel" hidden>
+                    <button class="btn btn-cancel btn-block btn-primary2   ">返回(return)</button>
+                </div>
+            <!--</form>-->
+
+
+
+        </div>
+    </div>
+
+    <div class="main-container">
+
+        <div class="container">
+
+            <!-- add-->
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 page-sidebar " id="rules" hidden>
+                    <aside>
+                        <div class="inner-box">
+                            <div class="locations-list  list-filter">
+                                <h5 class="list-title"><strong><a href="#">规则</a></strong></h5>
+                                <p>
+                                    1. 请输入您的账号地址用于查询。(input your account address for search)<br>
+                                    2. 本产品需要安装(you need install)<a href="https://github.com/ChengOrangeJu/WebExtensionWallet" target="_blank">web-wallet 插件</a><br>
+                                    3. 您可以新增新的通讯信息。(you can add your new contacts)<br>
+                                    4. 本项目基于星云链保存数据。(based on https://nebulas.io/)<br>
+                                    5. <font color="red">新增通讯录时，保证账号地址与使用钱包一致</font>
+                                </p>
+                            </div>
+                            <div class="inner-box mobile-filter-sidebar">
+                            </div>
+                            <div style="clear:both">
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+
+                <div id="result-list" class="col-sm-12 page-content col-thin-left">
+                    <div class="category-list">
+                        <div class="tab-box clearfix ">
+
+                            <div class="col-lg-12  box-title no-border">
+                                <div class="inner">
+                                    <h2>
+                                        当前您共有联系人数 </h2> 总共:<span class="count"></span>条
+                                </div>
+                            </div>
+                            <div class="menu-overly-mask"></div>
+                        </div>
+                        <div  class="adds-wrapper jobs-list">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer" id="footer">
+        <div class="container">
+
+            <ul class=" pull-right navbar-link footer-nav">
+                <li> &copy; 2018 gylsky</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+<script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="./js/pace.min.js"></script>
+<script src="./lib/nebPay.js"></script>
+<script src="./lib/nebulas.js"></script>
+<script>
+    "use strict";
+//    var dappAddress = "n1epEPZnEMSn6mhq4u1cme6b9xW4kvm4hwM"; // ccdgz 通讯录
+//      var dappAddress = "n1fes7unXb1Kp8zNzFSBKN4ZXW9i7UdUEDB"; // test
+    var dappAddress = "n1uFyQmg6Rk79TPJSNYVa8WmpfFJYCLFvYZ"; // main
+    //here we use neb.js to call the "get" function to search from the Dictionary
+    var nebulas = require("nebulas"),
+        Account = nebulas.Account,
+        neb = new nebulas.Neb();
+    neb.setRequest(new nebulas.HttpRequest("https://mainnet.nebulas.io"));
+    // 搜索功能: 查找通讯录中有没有信息
+
+    // $("#search_value").val() 搜索框内的值
+//    var from = Account.NewAccount().getAddressString();
+    console.log("0000000")
+    console.log($("#wd").val().trim())
+    var from = $("#wd").val().trim();
+    var value = "0";
+    var nonce = "0"
+    var gas_price = "100000"
+    var gas_limit = "200000"
+    var callFunction = "get";
+    var arg = null; // 随便生成一个，结果是0.
+    var callArgs = "[]"; //in the form of ["args"]
+    var contract = {
+        "function": callFunction,
+        "args": callArgs
+    }
+
+    var len = "0";
+    $(".count").html(len);
+
+
+
+    var NebPay = require("nebpay");     //https://github.com/nebulasio/nebPay
+    var nebPay = new NebPay();
+    var serialNumber;
+    var intervalQuery;
+
+    // 查询自己的通信录数据
+    $(".btn-search").click(function () {
+
+//        var from = Account.NewAccount().getAddressString(); // 这里没有看懂
+        var from = $("#wd").val().trim();
+        var value = "0";
+        var nonce = "0"
+        var gas_price = "100000"
+        var gas_limit = "200000"
+        var callFunction = "getMyTels";
+//        var callFunction = "get";
+        var arg = $("#wd").val().trim(); // 随便生成一个，结果是0.
+        var callArgs = "[\"" + arg + "\"]"; //in the form of ["args"]
+//        var callArgs = "[]"; //in the form of ["args"]
+        var contract = {
+            "function": callFunction,
+            "args": callArgs
+        }
+
+
+    neb.api.call(from,dappAddress,value,nonce,gas_price,gas_limit,contract).then(function (resp) {
+
+        try{
+
+            $(".count").html("0");
+            $(".adds-wrapper").html("");
+            var   result = JSON.parse(resp.result)
+            var len = result.length;
+            console.log("len === " + len)
+            $(".count").html(len);
+//            $("#wd").attr("placeholder","当前成语是:"+result[len-1].key+",请输入"+result[len-1].key[3]+"开头的四字成语接龙");
+            for (var i=0; i<len;i++){
+
+                var html = addItem(result[i].num, result[i].content, result[i].type);
+//                console.log(html);
+                $(".adds-wrapper").append(html);
+                // console.log(html);
+            }
+        }catch (err){
+            console.log(err)
+            //result is the error message
+        }
+        // cbSearch(resp)
+    }).catch(function (err) {
+        //cbSearch(err)
+        console.log("error:" + err.message)
+    })
+
+
+    });
+
+    $(".btn-add").click(function () {
+
+        // .是class  #是id
+        // 查询的隐藏
+        console.log("#wd hide()")
+        $(".div-btn-search").hide();
+        $(".wd-input").hide();
+        $(".div-btn-add").hide();
+
+
+        // 新增的显示。
+        $(".div-btn-sure").show();
+        $(".div-btn-cancel").show();
+        $("#num").val("");
+        $("#content").val("");
+        $("#type").val("");
+        $("#author").val("");
+        $(".num-input").show();
+        $(".content-input").show();
+        $(".type-input").show();
+        $(".author-input").show();
+        // 规则内容，需要隐藏。
+        $("#checkrule").show();
+        $("#hiderule").hide();
+        $("#rules").hide();
+        // 结果列表隐藏
+        $("#result-list").hide();
+    });
+
+    // 取消按钮的话，恢复到原来的样子
+    $(".btn-cancel").click(function () {
+        // .是class  #是id
+        // 查询的显示
+        console.log("#wd show()")
+        $(".div-btn-search").show();
+        $(".wd-input").show();
+        $(".div-btn-add").show();
+
+        // 新增的隐藏。
+        $(".div-btn-sure").hide();
+        $(".div-btn-cancel").hide();
+        $("#num").val("");
+        $("#content").val("");
+        $("#type").val("");
+        $("#author").val("");
+        $(".num-input").hide();
+        $(".content-input").hide();
+        $(".type-input").hide();
+        $(".author-input").hide();
+
+        // 结果列表显示
+        $("#result-list").show();
+
+
+    });
+
+    // 确认新增数据。
+    $(".btn-sure").click(function () {
+        // .是class  #是id
+        var numStr = $("#num").val();
+        var contentStr = $("#content").val();
+        var typeStr = $("#type").val();
+        var authorStr = $("#author").val();
+
+        if (isNull(numStr)){
+            alert("empty phone number!");
+            throw new Error("empty phone number!");
+        }
+        if (isNull(contentStr)){
+            alert("empty name!");
+            throw new Error("empty name!");
+        }
+        if (isNull(typeStr)){
+            alert("empty type!");
+            throw new Error("empty type!");
+        }
+        if (isNull(authorStr)){
+            alert("empty account address!");
+            throw new Error("empty account address!");
+        }
+
+        var to = dappAddress;
+        var value = "0";
+        var callFunction = "save"
+        var callArgs = "[\"" + $("#num").val().trim() + "\",\"" + $("#content").val().trim() + "\",\"" + $("#type").val().trim() + "\",\"" + $("#author").val().trim() + "\"]"
+        serialNumber = nebPay.call(to, value, callFunction, callArgs, {    //使用nebpay的call接口去调用合约,
+            listener: cbPush        //设置listener, 处理交易返回信息
+        });
+        intervalQuery = setInterval(function () {
+            funcIntervalQuery();
+        }, 5000);
+    });
+
+    function cbPush(resp) {
+//        alert("添加");
+        console.log("response of push: " + resp)
+    }
+    function funcIntervalQuery() {
+        nebPay.queryPayInfo(serialNumber)   //search transaction result from server (result upload to server by app)
+            .then(function (resp) {
+                // console.log("tx result: " + resp)   //resp is a JSON string
+                var respObject = JSON.parse(resp);
+                if(respObject.code == 0){
+                    alert("添加成功 Success");
+                    // 成功了，清空输入项。
+                    $("#num").val("");
+                    $("#content").val("");
+                    $("#type").val("");
+                    $("#author").val("");
+
+                    clearInterval(intervalQuery);
+                    window.reload();
+                }
+            })
+            .catch(function (err) {
+                console.log(err);
+            });
+    }
+
+
+    // 查看规则
+    $("#checkrule").click(function () {
+        // .是class  #是id
+        console.log("checkrule click")
+        $("#hiderule").show();
+        $("#rules").show();
+        $("#checkrule").hide();
+
+    });
+
+    // 隐藏规则
+    $("#hiderule").click(function () {
+
+        // .是class  #是id
+        $("#checkrule").show();
+        $("#rules").hide();
+        $("#hiderule").hide();
+    });
+
+
+
+    function addItem(num, content, type){
+        var html =' <div class="item-list job-item">\n' +
+            '                                        <h4 class="job-title">\n' +
+            '                                           '+num +  ' &nbsp;&nbsp;&nbsp;&nbsp;     —— &nbsp;&nbsp;&nbsp;&nbsp;     ' + content +
+            '                                        </h4>\n' +
+            '                                        <h5 class="company-title ">分组： '+type+'</h5>\n' +
+            '                            </div>';
+        return html;
+    }
+
+    function isNull(data){
+        return (data == "" || data == undefined || data == null);
+    }
+
+</script>
+
+
+</body>
+</html>
+
